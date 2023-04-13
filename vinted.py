@@ -40,6 +40,7 @@ class Vinted:
         password_input.send_keys(self.password)
         # 6.Submit and get connected to Vinted !
         password_input.submit()
+        time.sleep(20)
 
 
 
