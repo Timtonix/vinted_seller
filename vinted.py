@@ -43,10 +43,10 @@ class Vinted:
         time.sleep(20)
 
 
-
-f = open("data.json")
-credentials = json.loads(f.read())
-vinted = Vinted(credentials["email"], credentials["password"])
-f.close()
-vinted.accept_cookie(False)
-vinted.connect()
+if __name__ == "__main__":
+    f = open("data.json")
+    credentials = json.loads(f.read())
+    vinted = Vinted(credentials["email"], credentials["password"])
+    f.close()
+    vinted.accept_cookie(False)
+    vinted.connect()
