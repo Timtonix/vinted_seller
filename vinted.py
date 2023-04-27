@@ -40,7 +40,19 @@ class Vinted:
         password_input.send_keys(self.password)
         # 6.Submit and get connected to Vinted !
         password_input.submit()
-        time.sleep(20)
+
+    def check_main_page(self) -> bool:
+        if self.driver.current_url == "https://www.vinted.fr/":
+            return True
+        else:
+            self.driver.get("https://www.vinted.fr/")
+            return True
+
+    def collect_items_for_sale(self):
+        # 1. Go to the profile page
+        self.driver.get("https://www.vinted.fr/member/40334074-morissetteln")
+        item_grid = self.driver.find_elements(By.CLASS_NAME, "//div[@class='feed-grid']")
+        print(item_grid.text)
 
 
 if __name__ == "__main__":
@@ -50,3 +62,4 @@ if __name__ == "__main__":
     f.close()
     vinted.accept_cookie(False)
     vinted.connect()
+    vinted.collect_items_for_sale()
