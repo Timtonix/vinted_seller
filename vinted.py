@@ -11,6 +11,7 @@ class Vinted:
         self.password = password
 
         self.driver = webdriver.Chrome()
+        self.driver.set_window_size(2000, 2000)
         self.driver.get("https://vinted.fr")
         assert "Vinted" in self.driver.title
 
@@ -51,8 +52,11 @@ class Vinted:
     def collect_items_for_sale(self):
         # 1. Go to the profile page
         self.driver.get("https://www.vinted.fr/member/40334074-morissetteln")
-        item_grid = self.driver.find_elements(By.CLASS_NAME, "//div[@class='feed-grid']")
-        print(item_grid.text)
+        self.driver.implicitly_wait(2)
+        item_grid = self.driver.find_elements(By.XPATH, "//div[@data-testid='grid-item']")
+        print(len(item_grid))
+        time.sleep(5)
+
 
 
 if __name__ == "__main__":
